@@ -1,0 +1,5 @@
+env:
+  AMH_EL_TTS_API: ${{ secrets.AMH_EL_TTS_API }}
+  TG_EL_TTS_API: ${{ secrets.TG_EL_TTS_API }}
+  AMH_GEM_API: ${{ secrets.AMH_GEM_API }}
+  AMH_PEXELS_API: ${{ secrets.AMH_PEXELS_API }}
