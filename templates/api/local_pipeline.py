@@ -27,8 +27,9 @@ topic = 'finance and side hustle'
 
 def generate_script():
     global script
-    script = generate_ai_script(topic)
-    return script
+    global title
+    script, title = generate_ai_script(topic)
+    return script, title
 
 
 # def text_to_speech(script_text, output_path):
@@ -210,13 +211,15 @@ def add_audio_and_subtitles(video_path, audio_path, script_text, output_path='fi
     return output_path
 
 def local_pipeline():
-    script_text = generate_script()
+    generate_script()
+    script_text = script
+    video_title = title
     temp_id = str(uuid.uuid4())
 
     audio_path = f'temp_{temp_id}_audio.mp3'
     video_path = f'temp_{temp_id}_video.mp4'
 
-    paths = download_pexels_videos(topic)
+    paths = download_pexels_videos(video_title)
     #text_to_speech(script_text, audio_path)
     generate_tts(script_text, audio_path)
     combine_videos(paths)
@@ -225,7 +228,7 @@ def local_pipeline():
 
 
     print(f"Generated video saved to: {video_path}")
-    return video_path
+    return video_path, video_title
 
 # if __name__ == '__main__':
 #     local_pipeline()

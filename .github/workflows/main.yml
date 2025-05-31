@@ -3,3 +3,5 @@ env:
   TG_EL_TTS_API: ${{ secrets.TG_EL_TTS_API }}
   AMH_GEM_API: ${{ secrets.AMH_GEM_API }}
   AMH_PEXELS_API: ${{ secrets.AMH_PEXELS_API }}
+  CLIENT_SECRET_KEY: ${{secrets.CLIENT_SECRET_KEY }}
+  TOKEN_SECRET : ${{ secrets.TOKEN_SECRET }}
