@@ -40,10 +40,15 @@ def generate_ai_script(prompt):
     genai.configure(api_key=AMH_GEM_API)
 
     # Initialize the model
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash-preview-05-20')
+
+    title_prompt = f'Generate a new catchy topic name of no more than 4 words for {topic}. Provide only one and make sure its not been used'
+    response_title = model.generate_content(title_prompt)
+    title = response_title.text
+    print(f'title created: {title}')
 
     # Create the prompt
-    prompt = f"You generate short engaging scripts for AI videos that go viral on social media of around 20 seconds or so, make sure its not too formal. Give me a viral short-form video script about anything trending related to {topic}. Provide only the script and nothing else. Do not add the emojis, do not add asterisks or anything else like script and scene, don't mention music fades in and upbeat music and all that. In the end say subscribe and follow for more tips instead of link in bio and all"
+    prompt = f"You generate short engaging scripts for AI videos that go viral on social media of around 20 seconds or so, make sure its not too formal. Give me a viral short-form video script about anything trending related to {title}. Provide only the script and nothing else. Do not add the emojis, do not add asterisks or anything else like script and scene, don't mention music fades in and upbeat music and all that. In the end say subscribe and follow for more tips instead of link in bio and all"
 
     # Generate the content
     response = model.generate_content(prompt)
@@ -56,7 +61,7 @@ def generate_ai_script(prompt):
         f.write(script)
 
     print(f"✅ Script saved to: {script_filename}")
-    return script
+    return script, title
 
 
 
