@@ -18,6 +18,7 @@ load_dotenv()
 change_settings({"IMAGEMAGICK_BINARY": r'C:\\Program Files\\ImageMagick-7.X.X-Q16\\magick.exe'})
 AMH_EL_TTS_API = os.getenv('AMH_EL_TTS_API')
 TG_EL_TTS_API = os.getenv('TG_EL_TTS_API')
+RSS_API = os.getenv('RSS_API')
 
 
 
@@ -38,20 +39,40 @@ def generate_script():
 
 def generate_tts(script_text, output_path, speed=1.25):
     #api_key = TG_EL_TTS_API #thookgang
-    api_key = AMH_EL_TTS_API
-    voice_id = 'EXAVITQu4vr4xnSDxMaL'  # Default voice, change as needed
+    # api_key = AMH_EL_TTS_API
+    # voice_id = 'EXAVITQu4vr4xnSDxMaL'  # Default voice, change as needed
+    #
+    # response = requests.post(
+    #     f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
+    #     headers={
+    #         "xi-api-key": api_key,
+    #         "Content-Type": "application/json"
+    #     },
+    #     json={
+    #         "text": script_text,
+    #         "model_id": "eleven_monolingual_v1"
+    #     }
+    # )
+    API_KEY = RSS_API
+    text = script_text
 
-    response = requests.post(
-        f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
-        headers={
-            "xi-api-key": api_key,
-            "Content-Type": "application/json"
-        },
-        json={
-            "text": script_text,
-            "model_id": "eleven_monolingual_v1"
-        }
-    )
+    params = {
+        'key': API_KEY,
+        'hl': 'en-us',
+        'src': text,
+        'r': '0',
+        'c': 'mp3',
+        'f': '44khz_16bit_stereo'
+    }
+
+    response = requests.get('https://api.voicerss.org/', params=params)
+
+    # if response.status_code == 200:
+    #     with open('output.mp3', 'wb') as f:
+    #         f.write(response.content)
+    #     print("Audio saved as output.mp3")
+    # else:
+    #     print("Error:", response.text)
 
     if response.status_code == 200:
         raw_path = output_path.replace(".mp3", "_raw.mp3")
