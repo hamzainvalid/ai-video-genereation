@@ -42,7 +42,7 @@ def generate_ai_script(prompt):
     # Initialize the model
     model = genai.GenerativeModel('gemini-2.5-flash-preview-05-20')
 
-    title_prompt = f'Generate a new catchy topic name of no more than 4 words for {topic}. Provide only one and make sure its not been used'
+    title_prompt = f'Generate a new catchy topic name of no more than 4 words for {topic}. Provide only one and make sure its not been used and provide only the text'
     response_title = model.generate_content(title_prompt)
     title = response_title.text
     print(f'title created: {title}')
