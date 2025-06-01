@@ -19,6 +19,7 @@ change_settings({"IMAGEMAGICK_BINARY": r'C:\\Program Files\\ImageMagick-7.X.X-Q1
 AMH_EL_TTS_API = os.getenv('AMH_EL_TTS_API')
 TG_EL_TTS_API = os.getenv('TG_EL_TTS_API')
 RSS_API = os.getenv('RSS_API')
+PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
 
 
 
@@ -38,8 +39,9 @@ def generate_script():
 #     tts.save(output_path)
 
 def generate_tts(script_text, output_path, speed=1.25):
-    #api_key = TG_EL_TTS_API #thookgang
-    api_key = AMH_EL_TTS_API
+    #api_key = TG_EL_TTS_API
+    #api_key = AMH_EL_TTS_API
+    api_key = PERSONAL_EL_API
     voice_id = 'EXAVITQu4vr4xnSDxMaL'  # Default voice, change as needed
 
     response = requests.post(
