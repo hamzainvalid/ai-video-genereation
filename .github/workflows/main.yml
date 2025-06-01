@@ -1,7 +1,36 @@
+on:
+#  push:
+#    branches:
+#      - dev
+  schedule:
+    - cron: '0 6,12,21 * * *'
+
 env:
   AMH_EL_TTS_API: ${{ secrets.AMH_EL_TTS_API }}
   TG_EL_TTS_API: ${{ secrets.TG_EL_TTS_API }}
   AMH_GEM_API: ${{ secrets.AMH_GEM_API }}
   AMH_PEXELS_API: ${{ secrets.AMH_PEXELS_API }}
-  CLIENT_SECRET_KEY: ${{secrets.CLIENT_SECRET_KEY }}
-  TOKEN_SECRET : ${{ secrets.TOKEN_SECRET }}
+  CLIENT_SECRET_KEY: ${{ secrets.CLIENT_SECRET_KEY }}
+  TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+  RSS_API: ${{ secrets.RSS_API }}
+  PERSONAL_EL_API: ${{ secrets.PERSONAL_EL_API }}
+
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        run: python templates/api/youtube_upload.py
