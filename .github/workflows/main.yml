@@ -1,7 +1,7 @@
 on:
-#  push:
-#    branches:
-#      - dev
+  push:
+    branches:
+      - dev
   schedule:
     - cron: '0 6,12,21 * * *'
 
@@ -14,6 +14,11 @@ env:
   TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
   RSS_API: ${{ secrets.RSS_API }}
   PERSONAL_EL_API: ${{ secrets.PERSONAL_EL_API }}
+  CLIENT_SECRET_NN: ${{ secrets.CLIENT_SECRET_NN }}
+  NN_GEM_API: ${{ secrets.NN_GEM_API }}
+  NN_EL_API: ${{ secrets.NN_EL_API }}
+  NN_PEXELS_API: ${{ secrets.NN_PEXELS_API }}
+  TOKEN_SECRET_NN: ${{ secrets.TOKEN_SECRET_NN }}
 
 jobs:
   run-app:
@@ -33,4 +38,4 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
-        run: python templates/api/youtube_upload.py
+        run: python nightmarenarrator-personal/api/youtube_upload.py
