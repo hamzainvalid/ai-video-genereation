@@ -11,6 +11,7 @@ import openai
 import requests
 #from pydub import AudioSegment
 from dotenv import load_dotenv
+import random
 
 load_dotenv()
 
@@ -39,10 +40,12 @@ def generate_script():
 #     tts.save(output_path)
 
 def generate_tts(script_text, output_path, speed=1.25):
-    #api_key = TG_EL_TTS_API
-    #api_key = AMH_EL_TTS_API
     api_key = PERSONAL_EL_API
-    voice_id = 'EXAVITQu4vr4xnSDxMaL'  # Default voice, change as needed
+    voices = ['EXAVITQu4vr4xnSDxMaL',
+              'pjcYQlDFKMbcOUp6F5GD',
+              'IRHApOXLvnW57QJPQH2P'
+              ]
+    voice_id = random.choice(voices)  # Default voice, change as needed
 
     response = requests.post(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
