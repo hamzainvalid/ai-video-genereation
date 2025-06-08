@@ -41,10 +41,10 @@ def generate_script():
 
 def generate_tts(script_text, output_path, speed=1.25):
     api_key = PERSONAL_EL_API
-    voices = ['EXAVITQu4vr4xnSDxMaL',
-              'pjcYQlDFKMbcOUp6F5GD',
+    voices = ['pjcYQlDFKMbcOUp6F5GD',
               'IRHApOXLvnW57QJPQH2P'
               ]
+    defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
     voice_id = random.choice(voices)  # Default voice, change as needed
 
     response = requests.post(

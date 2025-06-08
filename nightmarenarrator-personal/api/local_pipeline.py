@@ -44,10 +44,10 @@ def generate_script():
 def generate_tts(script_text, output_path, speed=1.25):
     voices = [
         'tQ4MEZFJOzsahSEEZtHK',
-        'EXAVITQu4vr4xnSDxMaL',
         'D5TZi5xGzBoJjBT4GONI',
         '1rnYMVDXZksVr6x7pZPX'
     ]
+    defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
     api_key = NN_EL_API
     voice_id =  random.choice(voices) # Default voice, change as needed
 
