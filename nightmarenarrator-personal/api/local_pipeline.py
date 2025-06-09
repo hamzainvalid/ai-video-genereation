@@ -20,13 +20,14 @@ change_settings({"IMAGEMAGICK_BINARY": r'C:\\Program Files\\ImageMagick-7.X.X-Q1
 
 
 NN_EL_API = os.getenv('NN_EL_API')
+EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
 #TG_EL_TTS_API = os.getenv('TG_EL_TTS_API')
 #RSS_API = os.getenv('RSS_API')
-#PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
+PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
 
 
 
-topic = 'HORROR STORY NIGHTMARE'
+topic = 'HORROR STORY'
 
 
 
@@ -37,9 +38,7 @@ def generate_script():
     return script, title
 
 
-# def text_to_speech(script_text, output_path):
-#     tts = gTTS(text=script_text, lang='en')
-#     tts.save(output_path)
+
 
 def generate_tts(script_text, output_path, speed=1.25):
     voices = [
@@ -48,7 +47,8 @@ def generate_tts(script_text, output_path, speed=1.25):
         '1rnYMVDXZksVr6x7pZPX'
     ]
     defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
-    api_key = NN_EL_API
+
+    api_key = EXTRA_EL_API_1
     voice_id =  random.choice(voices) # Default voice, change as needed
 
     response = requests.post(
