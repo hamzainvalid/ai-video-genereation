@@ -17,15 +17,17 @@ load_dotenv()
 
 #os.environ['IMAGE_MAGICK_BINARY'] = r'C:\\Program Files\\ImageMagick-7.X.X-Q16\\magick.exe'
 change_settings({"IMAGEMAGICK_BINARY": r'C:\\Program Files\\ImageMagick-7.X.X-Q16\\magick.exe'})
-AMH_EL_TTS_API = os.getenv('AMH_EL_TTS_API')
-TG_EL_TTS_API = os.getenv('TG_EL_TTS_API')
-RSS_API = os.getenv('RSS_API')
-PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
+
+
+NN_EL_API = os.getenv('NN_EL_API')
 EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
+#TG_EL_TTS_API = os.getenv('TG_EL_TTS_API')
+#RSS_API = os.getenv('RSS_API')
+PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
 
 
 
-topic = 'finance and side hustle'
+topic = 'HORROR STORY'
 
 
 
@@ -37,14 +39,17 @@ def generate_script():
 
 
 
+
 def generate_tts(script_text, output_path, speed=1.25):
+    voices = [
+        'tQ4MEZFJOzsahSEEZtHK',
+        'D5TZi5xGzBoJjBT4GONI',
+        '1rnYMVDXZksVr6x7pZPX'
+    ]
+    defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
+
     api_key = EXTRA_EL_API_1
-    voices = ['EXAVITQu4vr4xnSDxMaL',
-              'tQ4MEZFJOzsahSEEZtHK',
-              'D5TZi5xGzBoJjBT4GONI'
-              ]
-    #defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
-    voice_id = random.choice(voices)  # Default voice, change as needed
+    voice_id =  random.choice(voices) # Default voice, change as needed
 
     response = requests.post(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
@@ -54,10 +59,29 @@ def generate_tts(script_text, output_path, speed=1.25):
         },
         json={
             "text": script_text,
-            "model_id": "eleven_multilingual_v2"
+            "model_id": "eleven_monolingual_v1"
         }
     )
+    # API_KEY = RSS_API
+    # text = script_text
+    #
+    # params = {
+    #     'key': API_KEY,
+    #     'hl': 'en-us',
+    #     'src': text,
+    #     'r': '0',
+    #     'c': 'mp3',
+    #     'f': '44khz_16bit_stereo'
+    # }
+    #
+    # response = requests.get('https://api.voicerss.org/', params=params)
 
+    # if response.status_code == 200:
+    #     with open('output.mp3', 'wb') as f:
+    #         f.write(response.content)
+    #     print("Audio saved as output.mp3")
+    # else:
+    #     print("Error:", response.text)
 
     if response.status_code == 200:
         raw_path = output_path.replace(".mp3", "_raw.mp3")
@@ -65,8 +89,11 @@ def generate_tts(script_text, output_path, speed=1.25):
             f.write(response.content)
         print('TTS audio generated')
 
+        # Use ffmpeg to speed up audio
+        # -filter:a "atempo=2.0" speeds up audio 2x
+        # atempo supports 0.5 to 2.0, so for >2x speeds chain filters
 
-
+        # Calculate filter string:
         speed_filter = []
         remaining_speed = speed
         while remaining_speed > 2.0:
@@ -77,7 +104,7 @@ def generate_tts(script_text, output_path, speed=1.25):
 
         cmd = [
             "ffmpeg",
-            "-y",
+            "-y",  # overwrite output
             "-i", raw_path,
             "-filter:a", filter_str,
             "-vn",
@@ -93,7 +120,36 @@ def generate_tts(script_text, output_path, speed=1.25):
         raise Exception("TTS failed: " + response.text)
 
 
+# def combine_videos(video_paths, output_path='final_video.mp4'):
+#     with open('temp_list.txt', 'w') as f:
+#         for path in video_paths:
+#             f.write(f"file '{os.path.abspath(path)}'\n")
+#
+#     subprocess.run([
+#         'ffmpeg', '-f', 'concat', '-safe', '0', '-i', 'temp_list.txt',
+#         '-c', 'copy', output_path
+#     ], check=True)
+#     return output_path
 
+# def combine_videos(video_paths, output_path='final_video.mp4', max_duration=20):
+#     with open('temp_list.txt', 'w') as f:
+#         for path in video_paths:
+#             f.write(f"file '{os.path.abspath(path)}'\n")
+#
+#     # Combine and trim final output to 20 seconds
+#     subprocess.run([
+#         'ffmpeg', '-y',
+#         '-f', 'concat', '-safe', '0',
+#         '-i', 'temp_list.txt',
+#         '-t', str(max_duration),
+#         '-c:v', 'libx264',
+#         '-pix_fmt', 'yuv420p',
+#         output_path
+#     ], check=True)
+#
+#     os.remove('temp_list.txt')
+#     print('videos compiled and final video created')# Clean up
+#     return output_path
 
 def combine_videos(video_paths, output_path='final_video.mp4', total_duration=20):
     clips = []

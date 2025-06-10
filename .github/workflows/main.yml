@@ -1,7 +1,7 @@
 on:
-#  push:
-#    branches:
-#      - dev
+  push:
+    branches:
+      - dev
   schedule:
     - cron: '0 4,10,17 * * *'
 
@@ -19,6 +19,7 @@ env:
   NN_EL_API: ${{ secrets.NN_EL_API }}
   NN_PEXELS_API: ${{ secrets.NN_PEXELS_API }}
   TOKEN_SECRET_NN: ${{ secrets.TOKEN_SECRET_NN }}
+  EXTRA_EL_API_1: ${{ secrets.EXTRA_EL_API_1 }}
 
 jobs:
   run-app:
@@ -37,8 +38,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Run script amh
+        run: python aimoneyhacks-personal/api/youtube_upload.py
+
       - name: Run script nn
         run: python nightmarenarrator-personal/api/youtube_upload.py
 
-      - name: Run script amh
-        run: python aimoneyhacks-personal/api/youtube_upload.py
+
