@@ -39,11 +39,11 @@ def generate_script():
 
 def generate_tts(script_text, output_path, speed=1.25):
     api_key = EXTRA_EL_API_1
-    voices = ['pjcYQlDFKMbcOUp6F5GD',
+    voices = ['EXAVITQu4vr4xnSDxMaL',
               'tQ4MEZFJOzsahSEEZtHK',
               'D5TZi5xGzBoJjBT4GONI'
               ]
-    defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
+    #defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
     voice_id = random.choice(voices)  # Default voice, change as needed
 
     response = requests.post(
@@ -54,7 +54,7 @@ def generate_tts(script_text, output_path, speed=1.25):
         },
         json={
             "text": script_text,
-            "model_id": "eleven_monolingual_v1"
+            "model_id": "eleven_monolingual_v2"
         }
     )
 

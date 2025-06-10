@@ -44,12 +44,12 @@ def generate_tts(script_text, output_path, speed=1.25):
     voices = [
         'tQ4MEZFJOzsahSEEZtHK',
         'D5TZi5xGzBoJjBT4GONI',
-        'pjcYQlDFKMbcOUp6F5GD'
+        'EXAVITQu4vr4xnSDxMaL'
     ]
-    defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
+   # defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 
     api_key = EXTRA_EL_API_1
-    voice_id =  random.choice(voices) # Default voice, change as needed
+    voice_id =  random.choice(voices)
 
     response = requests.post(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
@@ -59,7 +59,7 @@ def generate_tts(script_text, output_path, speed=1.25):
         },
         json={
             "text": script_text,
-            "model_id": "eleven_monolingual_v1"
+            "model_id": "eleven_monolingual_v2"
         }
     )
     # API_KEY = RSS_API

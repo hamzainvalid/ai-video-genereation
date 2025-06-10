@@ -1,6 +1,7 @@
 import os
 import requests
 from dotenv import load_dotenv
+import random
 
 load_dotenv()
 
@@ -9,10 +10,17 @@ NN_EL_API = os.getenv('NN_EL_API')
 PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
 EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
 
+voices_list = [
+        'tQ4MEZFJOzsahSEEZtHK',
+        'D5TZi5xGzBoJjBT4GONI',
+        'pjcYQlDFKMbcOUp6F5GD'
+    ]
+
+
 def testing_api(voice):
-    voice = voice
     api_key = EXTRA_EL_API_1
     voice_id =  voice
+    print(f'voice selected {voice_id}')
 
     response = requests.post(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
@@ -22,7 +30,7 @@ def testing_api(voice):
         },
         json={
             "text": '',
-            "model_id": "eleven_multilingual_v2"
+            "model_id": "eleven_multilingual_v1"
         }
     )
 
@@ -31,4 +39,4 @@ def testing_api(voice):
     else:
         print('no api for this voice')
 
-testing_api('IRHApOXLvnW57QJPQH2P')
+testing_api('EXAVITQu4vr4xnSDxMaL')
