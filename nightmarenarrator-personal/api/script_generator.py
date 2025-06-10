@@ -23,22 +23,11 @@ load_dotenv()
 
 
 NN_GEM_API = os.getenv('NN_GEM_API')
+AMH_GEM_API = os.getenv('AMH_GEM_API')
 
 def generate_ai_script(prompt):
     topic = prompt
-    # client = OpenAI(api_key="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-    #
-    # response = client.chat.completions.create(
-    #     model="gpt-3.5-turbo",
-    #     messages=[
-    #         {"role": "system", "content": "You generate short engaging scripts for AI videos that go viral on social media."},
-    #         {"role": "user", "content": f"Give me a viral short-form video script about how to anything trending related to {topic}."}
-    #     ]
-    # )
-    #
-    # script = response.choices[0].message.content
-
-    genai.configure(api_key=NN_GEM_API)
+    genai.configure(api_key=AMH_GEM_API)
 
     # Initialize the model
     model = genai.GenerativeModel('gemini-2.5-flash-preview-05-20')
