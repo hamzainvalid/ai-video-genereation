@@ -44,7 +44,7 @@ def generate_tts(script_text, output_path, speed=1.25):
     voices = [
         'tQ4MEZFJOzsahSEEZtHK',
         'D5TZi5xGzBoJjBT4GONI',
-        'pjcYQlDFKMbcOUp6F5GD'
+        '1rnYMVDXZksVr6x7pZPX'
     ]
     defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 

@@ -7,10 +7,11 @@ load_dotenv()
 TEST_EL_API = os.getenv('TEST_EL_API')
 NN_EL_API = os.getenv('NN_EL_API')
 PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
+EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
 
 def testing_api(voice):
     voice = voice
-    api_key = NN_EL_API
+    api_key = EXTRA_EL_API_1
     voice_id =  voice
 
     response = requests.post(
@@ -30,4 +31,4 @@ def testing_api(voice):
     else:
         print('no api for this voice')
 
-testing_api('1rnYMVDXZksVr6x7pZPX')
+testing_api('IRHApOXLvnW57QJPQH2P')
