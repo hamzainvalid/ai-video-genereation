@@ -24,31 +24,31 @@ EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
 #TG_EL_TTS_API = os.getenv('TG_EL_TTS_API')
 #RSS_API = os.getenv('RSS_API')
 PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
+HED_EL_API = os.getenv('HED_EL_API')
 
 
 
-topic = 'HORROR STORY'
+
 
 
 
 def generate_script():
     global script
     global title
-    script, title = generate_ai_script(topic)
+    script, title = generate_ai_script()
     return script, title
 
 
 
 
-def generate_tts(script_text, output_path, speed=1.25):
+def generate_tts(script_text, output_path, speed=1.10):
     voices = [
-        'tQ4MEZFJOzsahSEEZtHK',
-        'D5TZi5xGzBoJjBT4GONI',
-        '1rnYMVDXZksVr6x7pZPX'
+        'jhjua7BeakSijhQFhAX5',
+        'aCChyB4P5WEomwRsOKRh'
     ]
     defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 
-    api_key = EXTRA_EL_API_1
+    api_key = HED_EL_API
     voice_id =  random.choice(voices) # Default voice, change as needed
 
     response = requests.post(
@@ -62,26 +62,6 @@ def generate_tts(script_text, output_path, speed=1.25):
             "model_id": "eleven_monolingual_v1"
         }
     )
-    # API_KEY = RSS_API
-    # text = script_text
-    #
-    # params = {
-    #     'key': API_KEY,
-    #     'hl': 'en-us',
-    #     'src': text,
-    #     'r': '0',
-    #     'c': 'mp3',
-    #     'f': '44khz_16bit_stereo'
-    # }
-    #
-    # response = requests.get('https://api.voicerss.org/', params=params)
-
-    # if response.status_code == 200:
-    #     with open('output.mp3', 'wb') as f:
-    #         f.write(response.content)
-    #     print("Audio saved as output.mp3")
-    # else:
-    #     print("Error:", response.text)
 
     if response.status_code == 200:
         raw_path = output_path.replace(".mp3", "_raw.mp3")
@@ -89,9 +69,6 @@ def generate_tts(script_text, output_path, speed=1.25):
             f.write(response.content)
         print('TTS audio generated')
 
-        # Use ffmpeg to speed up audio
-        # -filter:a "atempo=2.0" speeds up audio 2x
-        # atempo supports 0.5 to 2.0, so for >2x speeds chain filters
 
         # Calculate filter string:
         speed_filter = []
@@ -104,7 +81,7 @@ def generate_tts(script_text, output_path, speed=1.25):
 
         cmd = [
             "ffmpeg",
-            "-y",  # overwrite output
+            "-y",
             "-i", raw_path,
             "-filter:a", filter_str,
             "-vn",
@@ -119,37 +96,6 @@ def generate_tts(script_text, output_path, speed=1.25):
     else:
         raise Exception("TTS failed: " + response.text)
 
-
-# def combine_videos(video_paths, output_path='final_video.mp4'):
-#     with open('temp_list.txt', 'w') as f:
-#         for path in video_paths:
-#             f.write(f"file '{os.path.abspath(path)}'\n")
-#
-#     subprocess.run([
-#         'ffmpeg', '-f', 'concat', '-safe', '0', '-i', 'temp_list.txt',
-#         '-c', 'copy', output_path
-#     ], check=True)
-#     return output_path
-
-# def combine_videos(video_paths, output_path='final_video.mp4', max_duration=20):
-#     with open('temp_list.txt', 'w') as f:
-#         for path in video_paths:
-#             f.write(f"file '{os.path.abspath(path)}'\n")
-#
-#     # Combine and trim final output to 20 seconds
-#     subprocess.run([
-#         'ffmpeg', '-y',
-#         '-f', 'concat', '-safe', '0',
-#         '-i', 'temp_list.txt',
-#         '-t', str(max_duration),
-#         '-c:v', 'libx264',
-#         '-pix_fmt', 'yuv420p',
-#         output_path
-#     ], check=True)
-#
-#     os.remove('temp_list.txt')
-#     print('videos compiled and final video created')# Clean up
-#     return output_path
 
 def combine_videos(video_paths, output_path='final_video.mp4', total_duration=20):
     clips = []
@@ -198,21 +144,6 @@ def combine_videos(video_paths, output_path='final_video.mp4', total_duration=20
 
     return output_path
 
-# def generate_video_with_audio(topic, audio_path, output_path, duration=10, resolution=(1280, 720)):
-#     download_image_from_pexels(topic, "static_background.png")
-#     command = [
-#         r"C:\ffmpeg\bin\bin\ffmpeg.exe",  # replace with your actual path to ffmpeg
-#         "-loop", "1",
-#         "-i", "static_background.png",
-#         "-i", audio_path,
-#         "-c:v", "libx264",
-#         "-tune", "stillimage",
-#         "-c:a", "aac",
-#         "-b:a", "192k",
-#         "-shortest",
-#         output_path
-#     ]
-#     subprocess.run(command, check=True)
 
 def add_audio_and_subtitles(video_path, audio_path, script_text, output_path='final_video_with_audio.mp4'):
     video = VideoFileClip(video_path)

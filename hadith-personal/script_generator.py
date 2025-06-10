@@ -22,34 +22,22 @@ load_dotenv()
 # ]
 
 
-NN_GEM_API = os.getenv('NN_GEM_API')
+HED_GEM_API = os.getenv('HED_GEM_API')
 
-def generate_ai_script(prompt):
-    topic = prompt
-    # client = OpenAI(api_key="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-    #
-    # response = client.chat.completions.create(
-    #     model="gpt-3.5-turbo",
-    #     messages=[
-    #         {"role": "system", "content": "You generate short engaging scripts for AI videos that go viral on social media."},
-    #         {"role": "user", "content": f"Give me a viral short-form video script about how to anything trending related to {topic}."}
-    #     ]
-    # )
-    #
-    # script = response.choices[0].message.content
+def generate_ai_script():
 
-    genai.configure(api_key=NN_GEM_API)
+    genai.configure(api_key=HED_GEM_API)
 
     # Initialize the model
     model = genai.GenerativeModel('gemini-2.5-flash-preview-05-20')
 
-    title_prompt = f'Generate a new catchy topic name of no more than 4 words for Horror story related to {topic}. Provide only one and make sure its not been used and provide only the text'
+    title_prompt = 'Create a different topic name of no more than 4 words from a different Hadith, provide only the text'
     response_title = model.generate_content(title_prompt)
     title = response_title.text
     print(f'title created: {title}')
 
     # Create the prompt
-    prompt = f"Generate a short engaging script for AI videos that go viral on social media of around 20 seconds or so, make sure its not too formal and make it sound creepier. Give me a viral short-form horror story video script about anything related to {title}. Provide only the script and nothing else. Do not add the emojis, do not add asterisks or anything else like script and scene, don't mention music fades in and upbeat music and all that. In the end say subscribe and like if you wanna hear more horror stories instead of link in bio and all"
+    prompt = f"Give me a Hadith from Sahih Al Bukhari related to {title} in english, provide only the text. In the end, mention Subscribe and share for more Hadith Everyday"
 
     # Generate the content
     response = model.generate_content(prompt)

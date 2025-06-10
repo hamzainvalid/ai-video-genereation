@@ -12,11 +12,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
-
 video_path, video_title = local_pipeline()
-# Now pass video_path to your youtube_upload script
 
+#video_title = 'Whispers of Dread'
+#video_path = r'D:\Github Repositories\ai-video-genereation\nightmarenarrator-personal\api\temp_af360355-4f8f-40f7-8adf-208605a28678_video.mp4'
 
 # Define the required scopes
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
