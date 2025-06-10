@@ -59,7 +59,7 @@ def generate_tts(script_text, output_path, speed=1.25):
         },
         json={
             "text": script_text,
-            "model_id": "eleven_monolingual_v2"
+            "model_id": "eleven_multilingual_v2"
         }
     )
     # API_KEY = RSS_API

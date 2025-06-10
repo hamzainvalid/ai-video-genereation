@@ -27,7 +27,7 @@ AMH_GEM_API = os.getenv('AMH_GEM_API')
 
 def generate_ai_script(prompt):
     topic = prompt
-    genai.configure(api_key=AMH_GEM_API)
+    genai.configure(api_key=NN_GEM_API)
 
     # Initialize the model
     model = genai.GenerativeModel('gemini-2.5-flash-preview-05-20')

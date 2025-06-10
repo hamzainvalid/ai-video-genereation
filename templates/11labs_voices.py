@@ -30,7 +30,7 @@ def testing_api(voice):
         },
         json={
             "text": '',
-            "model_id": "eleven_multilingual_v1"
+            "model_id": "eleven_multilingual_v2"
         }
     )
 
