@@ -9,6 +9,7 @@ TEST_EL_API = os.getenv('TEST_EL_API')
 NN_EL_API = os.getenv('NN_EL_API')
 PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
 EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
+HED_EL_API = os.getenv('HED_EL_API')
 
 voices_list = [
         'tQ4MEZFJOzsahSEEZtHK',
@@ -18,7 +19,7 @@ voices_list = [
 
 
 def testing_api(voice):
-    api_key = EXTRA_EL_API_1
+    api_key = HED_EL_API
     voice_id =  voice
     print(f'voice selected {voice_id}')
 
@@ -39,4 +40,4 @@ def testing_api(voice):
     else:
         print('no api for this voice')
 
-testing_api('EXAVITQu4vr4xnSDxMaL')
+testing_api('aCChyB4P5WEomwRsOKRh')

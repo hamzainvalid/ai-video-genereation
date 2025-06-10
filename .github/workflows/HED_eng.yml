@@ -1,25 +1,22 @@
 on:
-#  push:
-#    branches:
-#      - dev
+  push:
+    branches:
+      - dev
   schedule:
-    - cron: '0 4,10,17 * * *'
+    - cron: '0 6,11,15 * * *'
 
 env:
   AMH_EL_TTS_API: ${{ secrets.AMH_EL_TTS_API }}
   TG_EL_TTS_API: ${{ secrets.TG_EL_TTS_API }}
-  AMH_GEM_API: ${{ secrets.AMH_GEM_API }}
-  AMH_PEXELS_API: ${{ secrets.AMH_PEXELS_API }}
-  CLIENT_SECRET_KEY: ${{ secrets.CLIENT_SECRET_KEY }}
-  TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
   RSS_API: ${{ secrets.RSS_API }}
   PERSONAL_EL_API: ${{ secrets.PERSONAL_EL_API }}
-  CLIENT_SECRET_NN: ${{ secrets.CLIENT_SECRET_NN }}
-  NN_GEM_API: ${{ secrets.NN_GEM_API }}
   NN_EL_API: ${{ secrets.NN_EL_API }}
-  NN_PEXELS_API: ${{ secrets.NN_PEXELS_API }}
-  TOKEN_SECRET_NN: ${{ secrets.TOKEN_SECRET_NN }}
   EXTRA_EL_API_1: ${{ secrets.EXTRA_EL_API_1 }}
+  CLIENT_SECRET_HED: ${{ secrets.CLIENT_SECRET_HED }}
+  TOKEN_SECRET_HED: ${{ secrets.TOKEN_SECRET_HED }}
+  HED_GEM_API: ${{ secrets.HED_GEM_API }}
+  HED_EL_API: ${{ secrets.HED_EL_API }}
+  HED_PEXELS_API: ${{ secrets.HED_PEXELS_API }}
 
 jobs:
   run-app:
@@ -38,10 +35,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run script amh
-        run: python aimoneyhacks-personal/api/youtube_upload.py
-
-      - name: Run script nn
-        run: python nightmarenarrator-personal/api/youtube_upload.py
+      - name: Run script HED
+        run: python hadith-personal/youtube_upload.py
 
 
