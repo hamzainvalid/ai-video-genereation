@@ -19,7 +19,7 @@ env:
   NN_EL_API: ${{ secrets.NN_EL_API }}
   NN_PEXELS_API: ${{ secrets.NN_PEXELS_API }}
   TOKEN_SECRET_NN: ${{ secrets.TOKEN_SECRET_NN }}
-  EXTRA_EL_API_1: ${{ secret.EXTRA_EL_API_1 }}
+  EXTRA_EL_API_1: ${{ secrets.EXTRA_EL_API_1 }}
 
 jobs:
   run-app:
