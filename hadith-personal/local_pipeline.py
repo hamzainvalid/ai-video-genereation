@@ -28,10 +28,6 @@ HED_EL_API = os.getenv('HED_EL_API')
 
 
 
-
-
-
-
 def generate_script():
     global script
     global title
@@ -44,12 +40,13 @@ def generate_script():
 def generate_tts(script_text, output_path, speed=1.10):
     voices = [
         'jhjua7BeakSijhQFhAX5',
-        'aCChyB4P5WEomwRsOKRh'
+        'aCChyB4P5WEomwRsOKRh',
+        'A9ATTqUUQ6GHu0coCz8t'
     ]
     defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 
     api_key = HED_EL_API
-    voice_id =  random.choice(voices) # Default voice, change as needed
+    voice_id =  'A9ATTqUUQ6GHu0coCz8t'
 
     response = requests.post(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
@@ -59,7 +56,7 @@ def generate_tts(script_text, output_path, speed=1.10):
         },
         json={
             "text": script_text,
-            "model_id": "eleven_monolingual_v1"
+            "model_id": "eleven_multilingual_v2"
         }
     )
 

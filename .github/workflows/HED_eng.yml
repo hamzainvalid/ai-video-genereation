@@ -3,7 +3,7 @@ on:
     branches:
       - dev
   schedule:
-    - cron: '0 9,17 * * *'
+    - cron: '0 9,14 * * *'
 
 env:
   AMH_EL_TTS_API: ${{ secrets.AMH_EL_TTS_API }}
