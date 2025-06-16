@@ -37,7 +37,7 @@ def generate_ai_script():
     print(f'title created: {title}')
 
     # Create the prompt
-    prompt = f"Give me a Hadith from Sahih Al Bukhari related to {title} in english, provide only the text. In the text refer to the Prophet as Prophet Muhammad Peace be upon him In the end, mention Subscribe and share for more Hadith Everyday"
+    prompt = f"Give me a Hadith from Sahih Al Bukhari related to {title} in english alongwith the reference and explantion in english, provide only the text wihtout any special characters. In the text refer to the Prophet as Prophet Muhammad Peace be upon him In the end, mention Subscribe and share for more Hadith Everyday"
 
     # Generate the content
     response = model.generate_content(prompt)

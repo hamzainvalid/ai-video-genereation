@@ -22,6 +22,7 @@ TG_EL_TTS_API = os.getenv('TG_EL_TTS_API')
 RSS_API = os.getenv('RSS_API')
 PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
 EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
+TEST_EL_API = os.getenv('TEST_EL_API')
 
 
 
@@ -38,13 +39,13 @@ def generate_script():
 
 
 def generate_tts(script_text, output_path, speed=1.25):
-    api_key = EXTRA_EL_API_1
+    api_key = TEST_EL_API
     voices = ['EXAVITQu4vr4xnSDxMaL',
               'tQ4MEZFJOzsahSEEZtHK',
-              'D5TZi5xGzBoJjBT4GONI'
+              'pjcYQlDFKMbcOUp6F5GD'
               ]
     #defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
-    voice_id = random.choice(voices)  # Default voice, change as needed
+    voice_id = random.choice(voices)
 
     response = requests.post(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
@@ -142,21 +143,6 @@ def combine_videos(video_paths, output_path='final_video.mp4', total_duration=20
 
     return output_path
 
-# def generate_video_with_audio(topic, audio_path, output_path, duration=10, resolution=(1280, 720)):
-#     download_image_from_pexels(topic, "static_background.png")
-#     command = [
-#         r"C:\ffmpeg\bin\bin\ffmpeg.exe",  # replace with your actual path to ffmpeg
-#         "-loop", "1",
-#         "-i", "static_background.png",
-#         "-i", audio_path,
-#         "-c:v", "libx264",
-#         "-tune", "stillimage",
-#         "-c:a", "aac",
-#         "-b:a", "192k",
-#         "-shortest",
-#         output_path
-#     ]
-#     subprocess.run(command, check=True)
 
 def add_audio_and_subtitles(video_path, audio_path, script_text, output_path='final_video_with_audio.mp4'):
     video = VideoFileClip(video_path)
