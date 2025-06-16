@@ -39,14 +39,13 @@ def generate_script():
 
 def generate_tts(script_text, output_path, speed=1.10):
     voices = [
-        'jhjua7BeakSijhQFhAX5',
-        'aCChyB4P5WEomwRsOKRh',
-        'A9ATTqUUQ6GHu0coCz8t'
+        'A9ATTqUUQ6GHu0coCz8t',
+        'j9jfwdrw7BRfcR43Qohk'
     ]
     defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 
     api_key = HED_EL_API
-    voice_id =  'A9ATTqUUQ6GHu0coCz8t'
+    voice_id =  random.choice(voices)
 
     response = requests.post(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",

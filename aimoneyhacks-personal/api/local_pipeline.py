@@ -42,7 +42,7 @@ def generate_tts(script_text, output_path, speed=1.25):
     api_key = TEST_EL_API
     voices = ['EXAVITQu4vr4xnSDxMaL',
               'tQ4MEZFJOzsahSEEZtHK',
-              'D5TZi5xGzBoJjBT4GONI'
+              'pjcYQlDFKMbcOUp6F5GD'
               ]
     #defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
     voice_id = random.choice(voices)
