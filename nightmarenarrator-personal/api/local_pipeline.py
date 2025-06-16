@@ -24,6 +24,7 @@ EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
 #TG_EL_TTS_API = os.getenv('TG_EL_TTS_API')
 #RSS_API = os.getenv('RSS_API')
 PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
+TEST_EL_API = os.getenv('TEST_EL_API')
 
 
 
@@ -48,7 +49,7 @@ def generate_tts(script_text, output_path, speed=1.25):
     ]
    # defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 
-    api_key = EXTRA_EL_API_1
+    api_key = TEST_EL_API
     voice_id =  random.choice(voices)
 
     response = requests.post(
@@ -62,26 +63,6 @@ def generate_tts(script_text, output_path, speed=1.25):
             "model_id": "eleven_multilingual_v2"
         }
     )
-    # API_KEY = RSS_API
-    # text = script_text
-    #
-    # params = {
-    #     'key': API_KEY,
-    #     'hl': 'en-us',
-    #     'src': text,
-    #     'r': '0',
-    #     'c': 'mp3',
-    #     'f': '44khz_16bit_stereo'
-    # }
-    #
-    # response = requests.get('https://api.voicerss.org/', params=params)
-
-    # if response.status_code == 200:
-    #     with open('output.mp3', 'wb') as f:
-    #         f.write(response.content)
-    #     print("Audio saved as output.mp3")
-    # else:
-    #     print("Error:", response.text)
 
     if response.status_code == 200:
         raw_path = output_path.replace(".mp3", "_raw.mp3")
@@ -89,11 +70,6 @@ def generate_tts(script_text, output_path, speed=1.25):
             f.write(response.content)
         print('TTS audio generated')
 
-        # Use ffmpeg to speed up audio
-        # -filter:a "atempo=2.0" speeds up audio 2x
-        # atempo supports 0.5 to 2.0, so for >2x speeds chain filters
-
-        # Calculate filter string:
         speed_filter = []
         remaining_speed = speed
         while remaining_speed > 2.0:
@@ -104,7 +80,7 @@ def generate_tts(script_text, output_path, speed=1.25):
 
         cmd = [
             "ffmpeg",
-            "-y",  # overwrite output
+            "-y",
             "-i", raw_path,
             "-filter:a", filter_str,
             "-vn",
