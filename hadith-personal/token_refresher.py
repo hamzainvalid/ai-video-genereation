@@ -14,7 +14,7 @@ def get_authenticated_service():
     creds = None
 
     # Try to load token from env or fallback to file
-    token_data = os.getenv("TOKEN_SECRET_NN")
+    token_data = os.getenv("TOKEN_SECRET_HED")
     if token_data:
         creds = Credentials.from_authorized_user_info(json.loads(token_data), SCOPES)
         print('Token found in env')
@@ -28,7 +28,7 @@ def get_authenticated_service():
             creds.refresh(google.auth.transport.requests.Request())
         else:
             # Load client_secret.json from env or file
-            client_secret_data = os.getenv("CLIENT_SECRET_NN")
+            client_secret_data = os.getenv("CLIENT_SECRET_HED")
             if client_secret_data:
                 with open("temp_client_secret.json", "w") as f:
                     f.write(client_secret_data)
