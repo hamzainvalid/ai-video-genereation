@@ -23,7 +23,7 @@ env:
   TEST_EL_API: ${{ secrets.TEST_EL_API }}
 
 jobs:
-  run-app:
+  run-app-amh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -41,6 +41,22 @@ jobs:
 
       - name: Run script amh
         run: python aimoneyhacks-personal/api/youtube_upload.py
+
+  run-app-nn:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Run script nn
         run: python nightmarenarrator-personal/api/youtube_upload.py
