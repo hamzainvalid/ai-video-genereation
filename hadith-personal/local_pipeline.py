@@ -25,6 +25,7 @@ EXTRA_EL_API_1 = os.getenv('EXTRA_EL_API_1')
 #RSS_API = os.getenv('RSS_API')
 PERSONAL_EL_API = os.getenv('PERSONAL_EL_API')
 HED_EL_API = os.getenv('HED_EL_API')
+PERSOANL_EL_API_2 = os.getenv('PERSOANL_EL_API_2')
 
 
 
@@ -44,7 +45,7 @@ def generate_tts(script_text, output_path, speed=1.10):
     ]
     defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 
-    api_key = HED_EL_API
+    api_key = PERSOANL_EL_API_2
     voice_id =  random.choice(voices)
 
     response = requests.post(
