@@ -1,7 +1,7 @@
 on:
-#  push:
-#    branches:
-#      - dev
+  push:
+    branches:
+      - dev
   schedule:
     - cron: '0 9,14 * * *'
 
@@ -17,6 +17,7 @@ env:
   HED_GEM_API: ${{ secrets.HED_GEM_API }}
   HED_EL_API: ${{ secrets.HED_EL_API }}
   HED_PEXELS_API: ${{ secrets.HED_PEXELS_API }}
+  PERSOANL_EL_API_2: ${{ secrets.PERSOANL_EL_API_2 }}
 
 jobs:
   run-app:
