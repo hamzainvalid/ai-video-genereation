@@ -46,7 +46,7 @@ def generate_tts(script_text, output_path, speed=1.10):
     ]
     defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 
-    api_key = TEST_EL_API
+    api_key = PERSONAL_EL_API
     voice_id =  random.choice(voices)
 
     response = requests.post(
