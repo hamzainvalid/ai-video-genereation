@@ -18,6 +18,7 @@ env:
   HED_EL_API: ${{ secrets.HED_EL_API }}
   HED_PEXELS_API: ${{ secrets.HED_PEXELS_API }}
   PERSOANL_EL_API_2: ${{ secrets.PERSOANL_EL_API_2 }}
+  TEST_EL_API: ${{ secrets.TEST_EL_API }}
 
 jobs:
   run-app:
