@@ -43,5 +43,7 @@ def get_authenticated_service():
             with open("token.json", "w") as token_file:
                 token_file.write(creds.to_json())
 
+            os.remove('temp_client_secret.json')
+
 
 get_authenticated_service()
