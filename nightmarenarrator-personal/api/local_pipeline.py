@@ -43,14 +43,14 @@ def generate_script():
 
 def generate_tts(script_text, output_path, speed=1.25):
     voices = [
-        'tQ4MEZFJOzsahSEEZtHK',
+        'jqcCZkN6Knx8BJ5TBdYR',
         'D5TZi5xGzBoJjBT4GONI',
         'EXAVITQu4vr4xnSDxMaL',
         'pjcYQlDFKMbcOUp6F5GD'
     ]
    # defaul_voice = 'EXAVITQu4vr4xnSDxMaL'
 
-    api_key = NN_EL_API
+    api_key = TEST_EL_API
     voice_id =  random.choice(voices)
 
     response = requests.post(
