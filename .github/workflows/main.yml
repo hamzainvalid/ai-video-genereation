@@ -21,6 +21,7 @@ env:
   TOKEN_SECRET_NN: ${{ secrets.TOKEN_SECRET_NN }}
   EXTRA_EL_API_1: ${{ secrets.EXTRA_EL_API_1 }}
   TEST_EL_API: ${{ secrets.TEST_EL_API }}
+  PERSOANL_EL_API_2: ${{ secrets.PERSOANL_EL_API_2 }}
 
 jobs:
 #  run-app-amh:
