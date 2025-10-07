@@ -2,8 +2,8 @@ on:
 #  push:
 #    branches:
 #      - dev
-  schedule:
-    - cron: '0 12 * * *'
+#  schedule:
+#    - cron: '0 12 * * *'
 
 env:
   AMH_EL_TTS_API: ${{ secrets.AMH_EL_TTS_API }}
